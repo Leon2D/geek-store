@@ -15,8 +15,11 @@ router.get("/get-user", async (req, res, next) => {
   res.json(response);
 });
 router.post("/login", async (req, res, next) => {
-  const { email, password} = req.body;
-  let response = await usersCollection.findOne({ email: email, password: password});
+  const { email, password } = req.body;
+  let response = await usersCollection.findOne({
+    email: email,
+    password: password,
+  });
   res.json(response);
 });
 router.get("/get-product", async (req, res, next) => {
@@ -90,7 +93,7 @@ router.patch("/update-user/:id", async (req, res, next) => {
     isAdmin,
     isActivate,
   };
-  await usersCollection.findByIdAndUpdate(req.params.id,userCol);
+  await usersCollection.findByIdAndUpdate(req.params.id, userCol);
   res.send(req.params.id);
   res.send("User update is completed");
 });
@@ -123,7 +126,7 @@ router.patch("/update-product/:id", async (req, res, next) => {
     is_discounted,
     discount_percent,
   };
-  await productsCollection.findByIdAndUpdate(req.params.id,prodCol);
+  await productsCollection.findByIdAndUpdate(req.params.id, prodCol);
   res.send("Product update is completed");
 });
 /*Delete List of collections. */
